@@ -12,12 +12,27 @@ function App() {
       .catch(error => console.error(error))
   }, [])
 
+  const handleAddUser = event => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const user = { name, email }
+    console.log(user);
+  }
 
   // console.log(users);
   return (
     <>
       <h1>User Management System</h1>
       <p>Number of users: {users.length}</p>
+      <form onSubmit={handleAddUser}>
+        <input type="text" name="name" id="" />
+        <br />
+        <input type="email" name="email" id="" />
+        <br />
+        <input type="submit" value="Add User" />
+      </form>
       {
         users.map(user => <p key={user.id}>{user.id}. {user.name} : {user.email}</p>)
       }
